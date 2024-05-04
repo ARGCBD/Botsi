@@ -1,0 +1,28 @@
+import discord
+from discord.ext import commands
+
+configuracion = "MTIzMzU3ODQ2MTU3OTMxNzI3OA.GFCMw0.rrtRUKccFNDsy9161N1Dgb2tYQsenR1eX0aU70"
+//configuracion vale lo mismo que el token.
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hola, soy un bot {bot.user}!')
+//hello puede ser modificado. Se ejecuta con $hello
+
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+//heh puede ser modificado, tambien puedes modificar la cantidad de heh que quieras por cambiar el numero. Se ejecuta con $heh
+
+
+bot.run(configuracion)
